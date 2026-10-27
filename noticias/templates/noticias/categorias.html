@@ -1,0 +1,31 @@
+{% extends 'noticias/base.html' %}
+
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+    <h2>Gerenciamento de categorias</h2>
+
+    <p>
+        <a href="{% url 'cadastrar_categoria' %}">
+            Cadastrar categoria
+        </a>
+    </p>
+
+    {% for categoria in categorias %}
+        <div class="item">
+            <strong>{{ categoria.nome }}</strong>
+
+            <p>
+                <a href="{% url 'editar_categoria' categoria.id %}">
+                    Editar
+                </a>
+
+                <a href="{% url 'excluir_categoria' categoria.id %}">
+                    Excluir
+                </a>
+            </p>
+        </div>
+    {% empty %}
+        <p>Nenhuma categoria cadastrada.</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'noticias/base.html' %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+    <h2>Últimas notícias</h2>
+
+    {% for noticia in noticias %}
+        <article class="item">
+            <h3>{{ noticia.titulo }}</h3>
+
+            <p>{{ noticia.conteudo }}</p>
+
+            <p>
+                Categoria: {{ noticia.categoria.nome }}
+            </p>
+
+            <p>
+                Tags:
+                {% for tag in noticia.tags.all %}
+                    {{ tag.titulo }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    Nenhuma tag
+                {% endfor %}
+            </p>
+        </article>
+    {% empty %}
+        <p>Ainda não há notícias cadastradas.</p>
+        <p>Você pode cadastrar notícias pelo painel administrativo.</p>
+    {% endfor %}
+{% endblock %}

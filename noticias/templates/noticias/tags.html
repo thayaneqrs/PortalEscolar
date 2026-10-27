@@ -1,0 +1,31 @@
+{% extends 'noticias/base.html' %}
+
+{% block title %}Tags{% endblock %}
+
+{% block content %}
+    <h2>Gerenciamento de tags</h2>
+
+    <p>
+        <a href="{% url 'cadastrar_tag' %}">
+            Cadastrar tag
+        </a>
+    </p>
+
+    {% for tag in tags %}
+        <div class="item">
+            <strong>{{ tag.titulo }}</strong>
+
+            <p>
+                <a href="{% url 'editar_tag' tag.id %}">
+                    Editar
+                </a>
+
+                <a href="{% url 'excluir_tag' tag.id %}">
+                    Excluir
+                </a>
+            </p>
+        </div>
+    {% empty %}
+        <p>Nenhuma tag cadastrada.</p>
+    {% endfor %}
+{% endblock %}

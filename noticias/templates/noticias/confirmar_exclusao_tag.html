@@ -1,0 +1,27 @@
+{% extends 'noticias/base.html' %}
+
+{% block title %}Excluir tag{% endblock %}
+
+{% block content %}
+    <h2>Confirmar exclusão de tag</h2>
+
+    <p>
+        Tem certeza de que deseja excluir a tag
+        <strong>{{ tag.titulo }}</strong>?
+    </p>
+
+    <p>
+        As notícias não serão excluídas, mas deixarão de estar
+        associadas a esta tag.
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit">Confirmar exclusão</button>
+
+        <a href="{% url 'lista_tags' %}">
+            Cancelar
+        </a>
+    </form>
+{% endblock %}

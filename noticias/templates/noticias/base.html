@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Portal Escolar de Notícias{% endblock %}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        nav {
+            margin-bottom: 25px;
+        }
+
+        nav a, a {
+            margin-right: 10px;
+        }
+
+        .mensagem {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+
+        .success {
+            background-color: #e3f5e5;
+        }
+
+        .error {
+            background-color: #ffe4e4;
+        }
+
+        .erro {
+            color: #b00020;
+        }
+
+        .item {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        input, textarea {
+            display: block;
+            margin: 5px 0 15px;
+            padding: 8px;
+            width: 100%;
+            max-width: 450px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portal Escolar de Notícias</h1>
+
+        <nav>
+            <a href="{% url 'inicio' %}">Início</a>
+            <a href="{% url 'lista_categorias' %}">Categorias</a>
+            <a href="{% url 'lista_tags' %}">Tags</a>
+        </nav>
+    </header>
+
+    {% if messages %}
+        <section aria-label="Mensagens do sistema">
+            {% for message in messages %}
+                <p class="mensagem {{ message.tags }}" role="status">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

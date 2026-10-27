@@ -1,0 +1,36 @@
+{% extends 'noticias/base.html' %}
+
+{% block title %}Gerenciar categoria{% endblock %}
+
+{% block content %}
+    <h2>
+        {% if categoria %}
+            Editar categoria
+        {% else %}
+            Cadastrar categoria
+        {% endif %}
+    </h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+            <div>
+                {{ field.label_tag }}
+                {{ field }}
+
+                {% for error in field.errors %}
+                    <p class="erro">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Salvar categoria</button>
+
+        <a href="{% url 'lista_categorias' %}">
+            Cancelar
+        </a>
+    </form>
+{% endblock %}
